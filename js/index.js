@@ -666,8 +666,6 @@ document.getElementById("updateContact").addEventListener("click", function () {
 });
 
 function getShortName(name) {
-  if (name === undefined) return null;
-
   var res = name[0];
   return name.lastIndexOf(" ") + 1 === 0
     ? res
