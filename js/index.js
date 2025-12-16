@@ -1,3 +1,4 @@
+// COLOR LOGIC    ------>   WORK ON ANOTHER TIME
 function insertTwoColors(firstColor, secondColor) {
   return `style="background-image: linear-gradient(var(--gradient-position-br), ${firstColor}, ${secondColor}) !important;"`;
 }
@@ -14,6 +15,8 @@ var colorsArr = [
 ];
 
 var elementsColors = [];
+
+// COLOR LOGIC    ------>   WORK ON ANOTHER TIME
 
 // OPEN MODAL PART
 var openModal = document.getElementById("openModal");
@@ -32,33 +35,10 @@ function cancel(btn) {
   btn.addEventListener("click", function () {
     addNewContact.classList.add("d-none");
     clearContact();
-    if (!nameRegex.test(contactName.value) && contactName.value.length != 0) {
-      wrongNameMessage.classList.remove("d-none");
-      contactName.classList.add("border-red-50");
-    } else {
-      wrongNameMessage.classList.add("d-none");
-      contactName.classList.remove("border-red-50");
-    }
-    if (
-      !phoneRegex.test(contactPhone.value) &&
-      contactPhone.value.length != 0
-    ) {
-      wrongPhoneMessage.classList.remove("d-none");
-      contactPhone.classList.add("border-red-50");
-    } else {
-      wrongPhoneMessage.classList.add("d-none");
-      contactPhone.classList.remove("border-red-50");
-    }
-    if (
-      !emailRegex.test(contactEmail.value) &&
-      contactEmail.value.length != 0
-    ) {
-      wrongEmailMessage.classList.remove("d-none");
-      contactEmail.classList.add("border-red-50");
-    } else {
-      wrongEmailMessage.classList.add("d-none");
-      contactEmail.classList.remove("border-red-50");
-    }
+
+    nameValidation();
+    phoneValidation();
+    emailValidation();
   });
 }
 
@@ -154,12 +134,12 @@ function addContact() {
   }
 
   var contact = {
-    name: contactName.value,
-    phone: contactPhone.value,
-    email: contactEmail.value,
-    address: contactAddress.value,
+    name: contactName.value.trim(),
+    phone: contactPhone.value.trim(),
+    email: contactEmail.value.trim(),
+    address: contactAddress.value.trim(),
     list: group.value,
-    textArea: contactTextArea.value,
+    textArea: contactTextArea.value.trim(),
     favo: favorite.value,
     emer: emergency.value,
   };
@@ -591,39 +571,7 @@ function displayContact() {
 
   document.getElementById("cardInfo").innerHTML = box;
 
-  if (totalContacts === 0) {
-    document.getElementById(
-      "cardInfo"
-    ).innerHTML = `<div class="w-100" style="padding-block: 5rem">
-                        <div
-                          class="icon-holder mx-auto mb-3"
-                          style="
-                            width: 80px;
-                            height: 80px;
-                            border-radius: 1rem;
-                            background-color: #f6f3f4;
-                            color: #d1d5dc;
-                            font-size: 1.875rem;
-                          "
-                        >
-                          <i class="fa-solid fa-address-book"></i>
-                        </div>
-                        <p
-                          class="fw-500 text-center mb-0"
-                          style="color: #6a7282"
-                        >
-                          No contacts found
-                        </p>
-                        <p
-                          class="mt-1 fs-14 mb-0 text-center"
-                          style="color: #99a1af"
-                        >
-                          Click "Add Contact" to get started
-                        </p>
-                      </div>`;
-  } else {
-    document.getElementById("totalNum").innerHTML = totalContacts;
-  }
+  document.getElementById("totalNum").innerHTML = totalContacts;
 
   if (totalFavorites === 0) {
     document.getElementById(
@@ -775,15 +723,17 @@ function updateData() {
   }
 
   var contact = {
-    name: contactName.value,
-    phone: contactPhone.value,
-    email: contactEmail.value,
-    address: contactAddress.value,
+    name: contactName.value.trim(),
+    phone: contactPhone.value.trim(),
+    email: contactEmail.value.trim(),
+    address: contactAddress.value.trim(),
     list: group.value,
-    textArea: contactTextArea.value,
+    textArea: contactTextArea.value.trim(),
     favo: favorite.value,
     emer: emergency.value,
   };
+
+  console.log(contact.name);
 
   document.getElementById("addNewContact").classList.add("d-none");
 
@@ -801,7 +751,7 @@ function updateData() {
     icon: "success",
     title: "Your work has been updated",
     showConfirmButton: false,
-    timer: 2000,
+    timer: 1500,
   });
 }
 
@@ -816,7 +766,11 @@ function searchData() {
   var input = searchInput.value;
 
   var box = "";
+  var containerContactsFavorites = "";
+  var containerContactsEmergencies = "";
   var totalContacts = 0;
+  var totalEmergencies = 0;
+  var totalFavorites = 0;
 
   for (var i = 0; i < contactList.length; i++) {
     if (
@@ -824,6 +778,11 @@ function searchData() {
       contactList[i].phone.includes(input) ||
       contactList[i].email.toLowerCase().includes(input.toLowerCase())
     ) {
+      var mt = `mt-0`;
+      if (i !== 0) {
+        mt = `mt-12`;
+      }
+
       document.getElementById("cardInfo").innerHTML = `<div class="col-md-6">
                         <div class="inner card-info">
                           <div class="contact-info px-3 pt-3 pb-12">
@@ -1051,11 +1010,84 @@ function searchData() {
           break;
       }
 
+      document.getElementById("pesonsFavoriteInfo").innerHTML = `<div
+                      class="person-contact d-flex flex-wrap align-items-center gap-12 p-10 ${mt}"
+                      
+                    >
+                      <div
+                        class="icon-holder user-short-hand-name fw-600 fs-14"
+                        style="
+                          width: 40px;
+                          height: 40px;
+                          border-radius: 0.5rem;
+                          background-image: linear-gradient(
+                            var(--gradient-position-br),
+                            #fe9a00,
+                            #f54a00
+                          );
+                          color: white;
+                        "
+                      >
+                        ${getShortName(contactList[i].name)}
+                      </div>
+                      <div>
+                        <h4 class="mb-0 text-gray-900 fw-500 fs-14">
+                          ${contactList[i].name}
+                        </h4>
+                        <p class="mb-0 fs-12 text-gray-500">${
+                          contactList[i].phone
+                        }</p>
+                      </div>
+                      <a class="telephone icon-holder" href="tel:${
+                        contactList[i].phone
+                      }">
+                        <i class="fa-solid fa-phone"></i>
+                      </a>
+                    </div>`;
+
+      document.getElementById("pesonsEmergencyInfo").innerHTML = `<div
+                      class="person-contact d-flex flex-wrap align-items-center gap-12 p-10 ${mt}"
+                    >
+                      <div
+                        class="icon-holder user-short-hand-name fw-600 fs-14"
+                        style="
+                          width: 40px;
+                          height: 40px;
+                          border-radius: 0.5rem;
+                          background-image: linear-gradient(
+                            var(--gradient-position-br),
+                            #fe9a00,
+                            #f54a00
+                          );
+                          color: white;
+                        "
+                      >
+                        ${getShortName(contactList[i].name)}
+                      </div>
+                      <div>
+                        <h4 class="mb-0 text-gray-900 fw-500 fs-14">
+                          ${contactList[i].name}
+                        </h4>
+                        <p class="mb-0 fs-12 text-gray-500">${
+                          contactList[i].phone
+                        }</p>
+                      </div>
+                      <a class="telephone icon-holder" href="tel:${
+                        contactList[i].phone
+                      }">
+                        <i class="fa-solid fa-phone"></i>
+                      </a>
+                    </div>`;
+
       // CHECKING FOR EMERGENCY IF EXIST
       if (contactList[i].emer) {
         document.getElementById("emer").classList.remove("d-none");
         document.getElementById("filledHeart").classList.remove("d-none");
         document.getElementById("Emergency").classList.remove("d-none");
+        totalEmergencies++;
+        containerContactsEmergencies += document.getElementById(
+          "pesonsEmergencyInfo"
+        ).innerHTML;
       } else {
         document.getElementById("hollowHeart").classList.remove("d-none");
       }
@@ -1064,6 +1096,9 @@ function searchData() {
       if (contactList[i].favo) {
         document.getElementById("favo").classList.remove("d-none");
         document.getElementById("filledStar").classList.remove("d-none");
+        totalFavorites++;
+        containerContactsFavorites +=
+          document.getElementById("pesonsFavoriteInfo").innerHTML;
       } else {
         document.getElementById("hollowStar").classList.remove("d-none");
       }
@@ -1104,10 +1139,67 @@ function searchData() {
                         </p>
                       </div>`;
 
+    document.getElementById("totalNum").innerHTML = 0;
+
+    if (totalEmergencies === 0) {
+      document.getElementById(
+        "pesonsEmergencyInfo"
+      ).innerHTML = `<div style="padding-block: 2rem">
+                      <p class="fs-14 text-center mb-0" style="color: #99a1af">
+                        No emergency contacts
+                      </p>
+                    </div>`;
+
+      document.getElementById("totalEmergency").innerHTML = 0;
+    }
+
+    if (totalFavorites === 0) {
+      document.getElementById(
+        "pesonsFavoriteInfo"
+      ).innerHTML = `<div style="padding-block: 2rem">
+                      <p class="fs-14 text-center mb-0" style="color: #99a1af">
+                        No favorites yet
+                      </p>
+                    </div>`;
+
+      document.getElementById("totalFavorites").innerHTML = 0;
+    }
+
     return;
   }
 
   document.getElementById("cardInfo").innerHTML = box;
+
+  document.getElementById("totalNum").innerHTML = totalContacts;
+
+  if (totalFavorites === 0) {
+    document.getElementById(
+      "pesonsFavoriteInfo"
+    ).innerHTML = `<div style="padding-block: 2rem">
+                      <p class="fs-14 text-center mb-0" style="color: #99a1af">
+                        No favorites yet
+                      </p>
+                    </div>`;
+  } else {
+    document.getElementById("pesonsFavoriteInfo").innerHTML =
+      containerContactsFavorites;
+  }
+
+  document.getElementById("totalFavorites").innerHTML = totalFavorites;
+
+  if (totalEmergencies === 0) {
+    document.getElementById(
+      "pesonsEmergencyInfo"
+    ).innerHTML = `<div style="padding-block: 2rem">
+                      <p class="fs-14 text-center mb-0" style="color: #99a1af">
+                        No emergency contacts
+                      </p>
+                    </div>`;
+  } else {
+    document.getElementById("pesonsEmergencyInfo").innerHTML =
+      containerContactsEmergencies;
+  }
+  document.getElementById("totalEmergency").innerHTML = totalEmergencies;
 }
 
 function emergencyBtn(index) {
@@ -1136,7 +1228,11 @@ function emergencyBtn(index) {
 
   contactList.splice(index, 1, contact);
   localStorage.setItem("contactList", JSON.stringify(contactList));
-  displayContact();
+
+  if (searchInput.value === "") displayContact();
+  else searchData();
+
+  // displayContact();
 
   clearContact();
 }
@@ -1167,7 +1263,11 @@ function hollowEmergencyBtn(index) {
 
   contactList.splice(index, 1, contact);
   localStorage.setItem("contactList", JSON.stringify(contactList));
-  displayContact();
+
+  if (searchInput.value === "") displayContact();
+  else searchData();
+
+  // displayContact();
 
   clearContact();
 }
@@ -1199,7 +1299,11 @@ function starBtn(index) {
 
   contactList.splice(index, 1, contact);
   localStorage.setItem("contactList", JSON.stringify(contactList));
-  displayContact();
+
+  if (searchInput.value === "") displayContact();
+  else searchData();
+
+  // displayContact();
 
   clearContact();
 }
@@ -1231,7 +1335,11 @@ function hollowStarBtn(index) {
 
   contactList.splice(index, 1, contact);
   localStorage.setItem("contactList", JSON.stringify(contactList));
-  displayContact();
+
+  if (searchInput.value === "") displayContact();
+  else searchData();
+
+  // displayContact();
 
   clearContact();
 }
@@ -1245,7 +1353,7 @@ var wrongNameMessage = document.getElementById("wrongNameMessage");
 var wrongPhoneMessage = document.getElementById("wrongPhoneMessage");
 var wrongEmailMessage = document.getElementById("wrongEmailMessage");
 
-contactName.addEventListener("input", function () {
+function nameValidation() {
   if (!nameRegex.test(contactName.value) && contactName.value.length != 0) {
     wrongNameMessage.classList.remove("d-none");
     contactName.classList.add("border-red-50");
@@ -1253,9 +1361,9 @@ contactName.addEventListener("input", function () {
     wrongNameMessage.classList.add("d-none");
     contactName.classList.remove("border-red-50");
   }
-});
+}
 
-contactPhone.addEventListener("input", function () {
+function phoneValidation() {
   if (!phoneRegex.test(contactPhone.value) && contactPhone.value.length != 0) {
     wrongPhoneMessage.classList.remove("d-none");
     contactPhone.classList.add("border-red-50");
@@ -1263,9 +1371,9 @@ contactPhone.addEventListener("input", function () {
     wrongPhoneMessage.classList.add("d-none");
     contactPhone.classList.remove("border-red-50");
   }
-});
+}
 
-contactEmail.addEventListener("input", function () {
+function emailValidation() {
   if (!emailRegex.test(contactEmail.value) && contactEmail.value.length != 0) {
     wrongEmailMessage.classList.remove("d-none");
     contactEmail.classList.add("border-red-50");
@@ -1273,6 +1381,18 @@ contactEmail.addEventListener("input", function () {
     wrongEmailMessage.classList.add("d-none");
     contactEmail.classList.remove("border-red-50");
   }
+}
+
+contactName.addEventListener("input", function () {
+  nameValidation();
+});
+
+contactPhone.addEventListener("input", function () {
+  phoneValidation();
+});
+
+contactEmail.addEventListener("input", function () {
+  emailValidation();
 });
 
 // ====================================
