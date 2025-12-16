@@ -1,0 +1,512 @@
+/* NAVBAR START */
+.al-nav {
+  height: calc(var(--spacing) * 20);
+  backdrop-filter: blur(20px);
+  border-bottom: 0.0625rem solid #e5e7eb80;
+}
+
+.al-nav .navbar-brand .icon-holder {
+  width: 40px;
+  height: 40px;
+  background-image: linear-gradient(
+    var(--gradient-position-br),
+    var(--violet-600),
+    var(--indigo-600)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--main-box-shadow);
+}
+
+.al-nav .buttons button {
+  background-image: linear-gradient(
+    var(--gradient-position-br),
+    var(--violet-600),
+    var(--indigo-600)
+  );
+
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.al-nav .buttons button:hover {
+  box-shadow: var(--main-box-shadow);
+  transform: translateY(-2px);
+}
+
+.al-nav .buttons .icon-holder {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 0.75rem;
+  background-color: transparent;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.al-nav .buttons .icon-holder:hover {
+  color: var(--gray-700);
+  background-color: var(--gray-100);
+}
+
+.al-nav .buttons .image-holder {
+  width: 40px;
+  height: 40px;
+}
+
+.al-nav .buttons .image-holder img {
+  border-radius: 0.75rem;
+}
+
+/* NAVBAR END */
+
+/* ====================================== */
+
+/* MODAL START */
+.modalContact {
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+  background-color: #10182899;
+}
+
+.modalContact .contact {
+  width: 100%;
+  height: 100%;
+  max-width: 32rem;
+  max-height: 90vh;
+  scrollbar-width: none;
+  box-shadow: 0 25px 50px -12px #00000040;
+  background-color: white;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 1rem;
+}
+
+.modalContact .contact > div:nth-child(1) {
+  background-color: white;
+  border-bottom: 0.0625rem solid #f6f3f4;
+}
+
+.modalContact .contact > div:nth-child(1) button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--gray-400);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modalContact .contact > div:nth-child(1) button:hover {
+  color: var(--gray-600);
+  background-color: #f6f3f4;
+}
+
+.modalContact .contact .form-contact .avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  color: white;
+  background-image: linear-gradient(
+    var(--gradient-position-br),
+    #51a2ff,
+    #155dfc
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContact .contact .form-contact label[for="importAvatar"] {
+  background-color: #f6f3f4;
+  border-radius: 0.5rem;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modalContact .contact .form-contact label[for="importAvatar"]:hover {
+  background-color: #ebe6e7;
+}
+
+.modalContact .contact .form-contact .inputs-field label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--gray-700);
+}
+
+.modalContact .contact .form-contact .inputs-field label span {
+  color: #ff2056;
+}
+
+.modalContact .contact .form-contact .inputs-field input,
+.modalContact .contact .form-contact .inputs-field select,
+.modalContact .contact .form-contact .inputs-field textarea {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  background-color: #fbf9fa;
+  border: 0.0625rem solid #d1d5dc;
+  border-radius: 0.75rem;
+}
+
+.modalContact .contact .form-contact .inputs-field textarea {
+  resize: none;
+}
+
+.modalContact .contact .form-contact .inputs-field .form-select {
+  --bs-form-select-bg-img: none;
+  cursor: pointer;
+}
+
+.modalContact .contact .form-contact .inputs-field input:focus,
+.modalContact .contact .form-contact .inputs-field select:focus,
+.modalContact .contact .form-contact .inputs-field textarea:focus {
+  outline-style: none;
+  box-shadow: 0 0 0 2px #8e51ff33;
+  background-color: white;
+  border-color: #8e51ff !important;
+}
+
+.modalContact .contact .form-contact :not(.inputs-field) .form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #7f22fe;
+  border-color: #d1d5dc;
+  border-radius: 0.25rem;
+  box-shadow: none;
+}
+
+.modalContact
+  .contact
+  .form-contact
+  :not(.inputs-field)
+  .form-check-input:checked {
+  background-color: #986487;
+}
+
+.modalContact .contact .form-contact :not(.inputs-field) .form-check label,
+.modalContact
+  .contact
+  .form-contact
+  :not(.inputs-field)
+  .form-check
+  span:hover
+  .form-check-input {
+  cursor: pointer;
+}
+
+.modalContact .contact .form-contact :not(.inputs-field) .form-check span {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modalContact
+  .contact
+  .form-contact
+  :not(.inputs-field)
+  .form-check
+  span:hover {
+  color: var(--gray-900) !important;
+}
+
+.modalContact
+  .contact
+  .form-contact
+  :not(.inputs-field)
+  .form-check
+  span:hover
+  .form-check-input {
+  background-color: var(--gray-900);
+}
+
+.modalContact .contact .form-contact .buttons .btn {
+  width: calc(100% / 2 - 0.375rem);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+}
+
+.modalContact .contact .form-contact .buttons .btn.cancel {
+  background-color: #f6f3f4;
+  color: var(--gray-700);
+}
+
+.modalContact .contact .form-contact .buttons .btn.cancel:hover {
+  background-color: #ebe6e7;
+}
+
+.modalContact .contact .form-contact .buttons .btn.save-contact {
+  background-image: linear-gradient(
+    var(--gradient-position-br),
+    var(--violet-600),
+    var(--indigo-600)
+  );
+  color: white;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modalContact .contact .form-contact .buttons .btn.save-contact:hover {
+  box-shadow: 0 10px 15px -3px #8e51ff40, 0 4px 6px -4px #8e51ff40;
+}
+
+/* MODAL END */
+
+main .container {
+  padding-block: 2rem;
+}
+
+main .results .inner {
+  background-color: white;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
+  border-radius: 1rem;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+main .results .inner:hover {
+  box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
+}
+
+main .results .icon-holder {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-image: linear-gradient(
+    var(--gradient-position-br),
+    #2b7fff,
+    #155dfc
+  );
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 10px 15px -3px #2b7fff40, 0 4px 6px -4px #2b7fff40;
+}
+
+main input#search.form-control {
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  background-color: white;
+  border: 0.0625rem solid #ebe6e7;
+  border-radius: 0.75rem;
+}
+
+main input#search.form-control:focus {
+  outline-style: none;
+  box-shadow: 0 0 0 2px #8e51ff33;
+  background-color: white;
+  border-color: #8e51ff;
+}
+
+main .contacts .holder {
+  width: 56px;
+  height: 56px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.125rem;
+  background-image: linear-gradient(
+    var(--gradient-position-br),
+    #fe9a00,
+    #f54a00
+  );
+  color: white;
+}
+
+main .contacts .holder > div {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #fff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main .contacts .holder i {
+  font-size: 0.5rem;
+}
+
+main .contacts .contact-info .icon-holder {
+  width: 24px;
+  height: 24px;
+  background-color: #dbeafe;
+  color: #155dfc;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5625rem;
+}
+
+main .contacts .contact-info > div:nth-child(3) span {
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+  font-size: 0.6875rem;
+  border-radius: 0.375rem;
+}
+
+main .contacts .status .icon-holder,
+main .contacts .communication .icon-holder {
+  width: 36px;
+  height: 36px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+main .contacts .communication .icon-holder#phone {
+  background-color: #ecfdf5;
+  color: #009966;
+}
+
+main .contacts .communication .icon-holder#phone:hover {
+  background-color: #d0fae5;
+}
+
+main .contacts .communication .icon-holder#mail {
+  background-color: #f5f3ff;
+  color: #7f22fe;
+}
+
+main .contacts .communication .icon-holder#mail:hover {
+  background-color: #ede9fe;
+}
+
+main .contacts .status .icon-holder#hollowStar,
+main .contacts .status .icon-holder#hollowHeart {
+  background-color: #fbf9fa;
+  color: #99a1af;
+}
+
+main .contacts .status .icon-holder#hollowStar:hover {
+  background-color: #f6f3f4;
+  color: #ffb900;
+}
+
+main .contacts .status .icon-holder#hollowHeart:hover {
+  background-color: #f6f3f4;
+  color: #ff2056;
+}
+
+main .contacts .status .icon-holder#filledStar {
+  background-color: #fffbeb;
+  color: #ffb900;
+}
+
+main .contacts .status .icon-holder#filledStar:hover {
+  background-color: #fef3c6;
+}
+
+main .contacts .status .icon-holder#filledHeart {
+  background-color: #fff1f2;
+  color: #ff2056;
+}
+
+main .contacts .status .icon-holder#filledHeart:hover {
+  background-color: #ffe4e6;
+}
+
+main .contacts .status .icon-holder#pen,
+main .contacts .status .icon-holder#trash {
+  background-color: #fbf9fa;
+  color: #6a7282;
+}
+
+main .contacts .status .icon-holder#pen:hover {
+  background-color: #eef2ff;
+  color: #4f39f6;
+}
+
+main .contacts .status .icon-holder#trash:hover {
+  background-color: #fff1f2;
+  color: #ec003f;
+}
+
+main .contacts .lower {
+  border-top: 0.0625rem solid #f6f3f4;
+}
+
+main .card-info {
+  background-color: white;
+  border: 0.0625rem solid #f6f3f4;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+main .card-info:hover {
+  box-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
+}
+
+main .shorts .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.875rem;
+}
+
+main .person-contact {
+  background-color: #fbf9fa;
+  border-radius: 0.75rem;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+main .person-contact:hover {
+  background-color: #fffbeb;
+}
+
+main .person-contact .telephone {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  background-color: #d0fae5;
+  color: #009966;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+main .emergency .person-contact:hover {
+  background-color: #fff1f2;
+}
+
+main .emergency .person-contact .telephone {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  background-color: #ffe4e6;
+  color: #ec003f;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+main .emergency .person-contact:hover .telephone {
+  background-color: #ff2056;
+  color: white;
+}
+
+main .shorts .inner {
+  position: sticky;
+  top: 112px;
+}
